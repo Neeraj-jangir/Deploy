@@ -79,7 +79,7 @@ document.getElementById("calculator-form").addEventListener("submit", function (
     const shareText = document.getElementById("share-text");
   
     const plainMessage = message.replace(/<[^>]+>/g, "");
-    const shareMessage = `I just calculated my carbon footprint 🌍 and my score is ${score}/21! ${plainMessage} Try it yourself: https://yourlinkhere.com`;
+    const shareMessage = `I just calculated my carbon footprint 🌍 and my score is ${score}/21! ${plainMessage} Try it yourself: https://ecocalc.netlify.app/`;
   
     shareText.value = shareMessage;
     shareContainer.classList.remove("hidden");
