@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carbon Footprint Calculator 🌍</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <!-- Header with Geo-location Detection -->
+    <header>
+        <div class="logo">
+          <img src="/logo.png" alt="EcoCalc Logo" />
+        </div>
+        <div class="header-title">
+            <h1>🌍 Welcome to Carbon Footprint Calculator</h1>
+          </div>
+        <div class="header-content">
+          <div class="city-input" id="city">
+            <input type="text" id="city-input" placeholder="Fetching your city..." />
+          </div>
+        </div>
+      </header>
+      
+      
+      
+    <div class="container">
+    <h1>🌿 Carbon Footprint Calculator</h1>
+    <form id="calculator-form">
+      <!-- Questions -->
+      <div class="question">
+        <label for="transport">🚗 How do you travel daily?</label>
+        <select name="transport" id="transport">
+          <option value="car">Car</option>
+          <option value="bike">Bike</option>
+          <option value="public">Public Transport</option>
+          <option value="walk">Walk</option>
+        </select>
+      </div>
+      <div class="question">
+        <label for="electricity">💡 Monthly electricity usage?</label>
+        <select name="electricity" id="electricity">
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+      </div>
+      <div class="question">
+        <label for="recycle">♻️ Do you recycle?</label>
+        <select name="recycle" id="recycle">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+      <div class="question">
+        <label for="meat">🍗 How often do you eat meat?</label>
+        <select name="meat" id="meat">
+          <option value="daily">Daily</option>
+          <option value="few">Few times a week</option>
+          <option value="rarely">Rarely</option>
+          <option value="never">Never</option>
+        </select>
+      </div>
+      <div class="question">
+        <label for="onlineShopping">📦 Online shopping frequency?</label>
+        <select name="onlineShopping" id="onlineShopping">
+          <option value="frequent">Frequent</option>
+          <option value="occasionally">Occasionally</option>
+          <option value="rarely">Rarely</option>
+        </select>
+      </div>
+      <div class="question">
+        <label for="acUsage">🌡️ AC/Heater usage?</label>
+        <select name="acUsage" id="acUsage">
+          <option value="regular">Regularly</option>
+          <option value="rarely">Rarely</option>
+          <option value="never">Never</option>
+        </select>
+      </div>
+      <div class="question">
+        <label for="showerLength">🚿 Average shower length?</label>
+        <select name="showerLength" id="showerLength">
+          <option value="long">Long</option>
+          <option value="medium">Medium</option>
+          <option value="short">Short</option>
+        </select>
+      </div>
+
+      <button type="submit">Calculate</button>
+    </form>
+
+    <div id="result" class="hidden"></div>
+    <canvas id="chart" class="hidden"></canvas>
+
+    <div id="share-container" class="hidden">
+      <p>Share your result:</p>
+      <textarea id="share-text" rows="3" placeholder="Write your message here"></textarea>
+      <button onclick="copyToClipboard()">📋 Copy</button>
+      <a id="whatsapp-share" href="#" target="_blank">
+        Share on WhatsApp
+      </a>
+          </div>
+
+    <section class="facts">
+      <h2>🌎 Eco Facts & Tips</h2>
+      <ul>
+        <li>1 minute less shower = saves 2 gallons of water</li>
+        <li>Switching to LED saves 75% electricity</li>
+        <li>Eating plant-based once a week lowers emissions</li>
+        <li>Walking or biking = 0 carbon emissions!</li>
+      </ul>
+    </section>
+  </div>
+<!-- Footer Section -->
+<footer>
+    <div class="footer-container">
+      <p class="footer-quote">"The Earth is what we all have in common." - Wendell Berry</p>
+      <p>&copy; 2025 Carbon Footprint Calculator. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+  <button id="backToTop" title="Go to top">↑</button>
+
+</body>
+</html>
+<script>
+    const backToTopBtn = document.getElementById("backToTop");
+  
+    // Show the button when scrolling down 100px
+    window.onscroll = function () {
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        backToTopBtn.style.display = "block";
+      } else {
+        backToTopBtn.style.display = "none";
+      }
+    };
+  
+    // Scroll to top when clicked
+    backToTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+  
