@@ -105,6 +105,7 @@ document.getElementById("whatsapp-share").href = `https://wa.me/?text=${whatsapp
     const cityElement = document.getElementById('city');
     const cityInput = document.getElementById('city-input'); // 💡 store it once
   
+    // Get city name from geolocation
     function getCityFromGeoLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(async (position) => {
@@ -131,4 +132,70 @@ document.getElementById("whatsapp-share").href = `https://wa.me/?text=${whatsapp
   
     getCityFromGeoLocation();
   });
+  // Fetch air quality data
+  function fetchAirQuality() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success, error);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  
+    function success(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      getAirQuality(lat, lon);
+    }
+  
+    function error() {
+      console.log("Unable to retrieve your location.");
+    }
+  }
+  
+  // Call the function to fetch air quality data
+  function getAirQuality(lat, lon) {
+    const apiKey = "4d7940de83a6fca046a800e8a0e7b832"; 
+    const url = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const aqi = data.list[0].main.aqi;
+  
+        let quality = "";
+        let emoji = "";
+  
+        switch (aqi) {
+          case 1:
+            quality = "Good";
+            emoji = "🟢";
+            break;
+          case 2:
+            quality = "Fair";
+            emoji = "🟡";
+            break;
+          case 3:
+            quality = "Moderate";
+            emoji = "🟠";
+            break;
+          case 4:
+            quality = "Poor";
+            emoji = "🔴";
+            break;
+          case 5:
+            quality = "Very Poor";
+            emoji = "🟣";
+            break;
+          default:
+            quality = "Unknown";
+            emoji = "❓";
+        }
+  
+        document.getElementById("city").innerHTML += `
+          <p class="air-info" data-aos="fade-in">
+            Air Quality: <strong>${quality} ${emoji}</strong>
+          </p>
+        `;
+      })
+      .catch(err => console.log("Error fetching AQI:", err));
+  }
   
